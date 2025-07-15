@@ -17,6 +17,20 @@ final class ListRepositoryImpl: ListRepository {
             .data(type: [Company].self)
             .eraseToAnyPublisher()
     }
+    
+    func getUsers() -> AnyPublisher<[User], Error> {
+        APIServices.default
+            .request(ListEndpoint.users)
+            .data(type: [User].self)
+            .eraseToAnyPublisher()
+    }
+    
+    func getCustomers() -> AnyPublisher<[Customer], Error> {
+        APIServices.default
+            .request(ListEndpoint.customers)
+            .data(type: [Customer].self)
+            .eraseToAnyPublisher()
+    }
 }
 
 extension Container {

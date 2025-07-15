@@ -10,6 +10,8 @@ import APIService
 
 enum ListEndpoint {
     case companies
+    case users
+    case customers
 }
 
 extension ListEndpoint: Endpoint {
@@ -21,8 +23,10 @@ extension ListEndpoint: Endpoint {
         switch self {
         case .companies:
             return "/companies"
-        default:
-            return ""
+        case .users:
+            return "/users"
+        case .customers:
+            return "/customers"
         }
     }
 }

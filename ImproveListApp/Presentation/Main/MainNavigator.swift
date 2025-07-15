@@ -8,8 +8,14 @@
 import UIKit
 
 protocol MainNavigatorType {
+    func toDefaultList()
 }
 
 struct MainNavigator: MainNavigatorType {
     unowned let navigationController: UINavigationController
+    
+    func toDefaultList() {
+        let vc = DefaultListViewController.initView(navigation: navigationController)
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

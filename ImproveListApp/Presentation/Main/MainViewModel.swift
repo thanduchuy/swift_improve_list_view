@@ -16,7 +16,7 @@ struct MainViewModel {
 
 extension MainViewModel: ViewModel {
     struct Input {
-        let loadTrigger: Driver<Void>
+        let toDefaultList: Driver<Void>
     }
     
     final class Output: ObservableObject {
@@ -29,17 +29,8 @@ extension MainViewModel: ViewModel {
         let loadingTracker = ActivityTracker()
         let errorTracker = ErrorTracker()
         
-        input.loadTrigger
-            .map {
-                listUseCase.getCompanies()
-                    .trackError(errorTracker)
-                    .trackActivity(loadingTracker)
-                    .asDriver()
-            }
-            .switchToLatest()
-            .sink(receiveValue: {
-                print("************", $0)
-            })
+        input.toDefaultList
+            .sink(receiveValue: navigator.toDefaultList)
             .store(in: cancelBag)
         
         loadingTracker.loading

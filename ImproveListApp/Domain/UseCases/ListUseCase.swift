@@ -10,6 +10,8 @@ import Factory
 
 protocol ListUseCaseType {
     func getCompanies() -> AnyPublisher<[Company], Error>
+    func getCustomers() -> AnyPublisher<[Customer], Error>
+    func getUsers() -> AnyPublisher<[User], Error>
 }
 
 struct ListUseCase: ListUseCaseType {
@@ -18,6 +20,14 @@ struct ListUseCase: ListUseCaseType {
     
     func getCompanies() -> AnyPublisher<[Company], Error> {
         listRepository.getCompanies()
+    }
+    
+    func getCustomers() -> AnyPublisher<[Customer], Error> {
+        listRepository.getCustomers()
+    }
+    
+    func getUsers() -> AnyPublisher<[User], Error> {
+        listRepository.getUsers()
     }
 }
 
